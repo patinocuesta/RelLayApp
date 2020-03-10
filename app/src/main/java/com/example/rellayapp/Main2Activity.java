@@ -2,6 +2,7 @@ package com.example.rellayapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,14 +24,19 @@ public class Main2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         l=findViewById(R.id.liste);
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         listePersonnes= (ArrayList<Personne>) intent.getSerializableExtra("liste");
         ar=new ArrayAdapter<Personne>(this, android.R.layout.simple_list_item_1,listePersonnes);
         l.setAdapter(ar);
         l.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getBaseContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_LONG).show();
+                //on prepare le resultat a renvoyer
+                Intent intent=new Intent();
+                setResult(Activity.RESULT_OK,intent);
+                intent.putExtra("resultat", String.valueOf(position));
+                finish();
             }
         });
     }
