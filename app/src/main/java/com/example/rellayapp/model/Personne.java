@@ -1,19 +1,40 @@
 package com.example.rellayapp.model;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 //On va serialiser l'objet Personne car on va l'envoyer via un intent vers un autre activité,
 // donc il doit etre converti en chaine.
 public class Personne implements Serializable {
 
+    private int id;
     private String nom;
     private String prenom;
-    private String langue;
+    private String situPro;
+    private String situFa;
+    private Boolean enfants;
+    private List<String> appart;
 
-    public Personne(String nom, String prenom, String langue) {
+    public Personne(int id, String nom, String prenom, String situPro, String situFa, Boolean enfants, List<String> appart) {
+        this.id= id;
         this.nom = nom;
         this.prenom = prenom;
-        this.langue = langue;
+        this.situPro = situPro;
+        this.situFa = situFa;
+        this.enfants = enfants;
+        this.appart = appart;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -32,17 +53,49 @@ public class Personne implements Serializable {
         this.prenom = prenom;
     }
 
-    public String getLangue() {
-        return langue;
+    public String getSituPro() {
+        return situPro;
     }
 
-    public void setLangue(String langue) {
-        this.langue = langue;
+    public void setSituPro(String situPro) {
+        this.situPro = situPro;
+    }
+
+    public String getSituFa() {
+        return situFa;
+    }
+
+    public void setSituFa(String situFa) {
+        this.situFa = situFa;
+    }
+
+    public Boolean getEnfants() {
+        return enfants;
+    }
+
+    public void setEnfants(Boolean enfants) {
+        this.enfants = enfants;
+    }
+
+    public List<String> getAppart() {
+        return appart;
+    }
+
+    public void setAppart(List<String> appart) {
+        this.appart = appart;
     }
 
     @Override
     public String toString() {
-        return   "User: "+ prenom + " " + nom +"\nLangue: " + langue ;
+        return "Personne{" +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", situPro='" + situPro + '\'' +
+                ", situFa='" + situFa + '\'' +
+                ", enfants=" + enfants +
+                ", appart=" + appart +
+                '}';
     }
 
     @Override
@@ -52,7 +105,11 @@ public class Personne implements Serializable {
         Personne personne = (Personne) o;
         return Objects.equals(nom, personne.nom) &&
                 Objects.equals(prenom, personne.prenom) &&
-                Objects.equals(langue, personne.langue);
+                Objects.equals(situPro, personne.situPro) &&
+                Objects.equals(situFa, personne.situFa) &&
+                Objects.equals(enfants, personne.enfants);
     }
 
 }
+
+

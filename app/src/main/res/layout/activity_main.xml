@@ -2,74 +2,194 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/FormLY"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="30dp"
     android:layout_margin="20dp"
+    android:padding="30dp"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/nom"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:text="Nom:" />
 
     <EditText
         android:id="@+id/editNom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/nom"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@id/nom"
-        android:layout_alignBaseline="@id/nom"
         android:inputType="textPersonName"
         android:text="" />
+
     <TextView
         android:id="@+id/prenom"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
         android:layout_below="@id/nom"
         android:layout_alignParentLeft="true"
+        android:paddingTop="20dp"
         android:text="Prenom:" />
 
     <EditText
         android:id="@+id/editPrenom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/prenom"
         android:layout_marginBottom="20dp"
         android:layout_toRightOf="@id/prenom"
-        android:layout_alignBaseline="@id/prenom"
         android:inputType="textPersonName"
         android:text="" />
 
 
     <TextView
-        android:id="@+id/langue"
-        android:layout_width="70dp"
+        android:id="@+id/situPro"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
-        android:paddingTop="20dp"
         android:layout_below="@id/prenom"
         android:layout_alignParentLeft="true"
-        android:text="Langue:" />
+        android:paddingTop="20dp"
+        android:text="Situation professionelle:" />
 
     <Spinner
-        android:id="@+id/spLangue"
-        android:layout_width="100dp"
+        android:id="@+id/spSituPro"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/langue"
         android:layout_below="@id/editPrenom"
-        android:layout_alignBaseline="@id/langue"/>
+        android:layout_alignBaseline="@id/situPro"
+        android:layout_toRightOf="@id/situPro" />
 
-<!--    <Button
+    <TextView
+        android:id="@+id/situfami"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/situPro"
+        android:layout_alignParentLeft="true"
+        android:paddingTop="20dp"
+        android:text="Situation familiale:" />
+
+    <RadioGroup
+        android:id="@+id/rgSitufami"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spSituPro"
+        android:layout_alignBaseline="@id/situfami"
+        android:layout_toRightOf="@id/situfami">
+
+        <RadioButton
+            android:id="@+id/rbCelibatire"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="Celibataire" />
+
+        <RadioButton
+            android:id="@+id/rbMarrie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="Marrié/e" />
+
+        <RadioButton
+            android:id="@+id/rbDivorce"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="Divorcé/e" />
+
+        <RadioButton
+            android:id="@+id/rbVeuf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onRadioButtonClicked"
+            android:text="Veuf/veuve" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/enfants"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rgSitufami"
+        android:layout_alignParentLeft="true"
+        android:paddingTop="20dp"
+        android:text="Enfants à charge:" />
+
+    <Switch
+        android:id="@+id/swEnfants"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rgSitufami"
+        android:layout_alignBaseline="@id/enfants"
+        android:layout_toRightOf="@id/enfants" />
+
+    <TextView
+        android:id="@+id/appart"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/enfants"
+        android:layout_alignParentLeft="true"
+        android:paddingTop="20dp"
+        android:text="Habitation recherché:" />
+
+    <CheckBox
+        android:id="@+id/cbStudio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appart"
+        android:layout_alignParentLeft="true"
+        android:onClick="onCheckBoxClicked"
+        android:text="Studio" />
+
+    <CheckBox
+        android:id="@+id/cbF2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appart"
+        android:layout_toRightOf="@id/cbStudio"
+        android:onClick="onCheckBoxClicked"
+        android:text="F2" />
+
+    <CheckBox
+        android:id="@+id/cbF3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appart"
+        android:layout_toRightOf="@id/cbF2"
+        android:onClick="onCheckBoxClicked"
+        android:text="F3" />
+
+    <CheckBox
+        android:id="@+id/cbF4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appart"
+        android:layout_toRightOf="@id/cbF3"
+        android:onClick="onCheckBoxClicked"
+        android:text="F4" />
+
+    <CheckBox
+        android:id="@+id/cbMaison"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/appart"
+        android:layout_toRightOf="@id/cbF4"
+        android:onClick="onCheckBoxClicked"
+        android:text="Maison" />
+
+
+    <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/spLangue"
-        android:layout_below="@id/editPrenom"
-        android:layout_marginLeft="50dp"
-        android:text="Envoyer"
-        android:onClick="envoyer"/>-->
+        android:layout_below="@id/cbMaison"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:onClick="envoyer"
+        android:text="Envoyer" />
 
 </RelativeLayout>
